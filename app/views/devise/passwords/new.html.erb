@@ -1,0 +1,16 @@
+<%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+        <%= devise_error_messages! %>
+<div>
+            <h1>Reset Password</h1>
+            <p>
+              To reset your password enter your email id
+              and we'll send you a link to reset your password.
+            </p>
+              <ul>
+                <li>
+                  <%= f.input :email, placeholder: 'Enter Your Email ID' %>
+                </li>
+              </ul>
+            <%= f.submit 'Send', as: "button" %>
+          </div>
+          <% end %>

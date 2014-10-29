@@ -1,0 +1,90 @@
+<div class="table-responsive" xmlns="http://www.w3.org/1999/html">
+<table class="table" border="1">
+<tr style="line-height: 50px;">
+<td style="width: 50%; background-color: #F1F1F1">
+<div class="form-group" style="margin-left: 150px;">
+</br></br>
+  <b style="color: steelblue; margin-left: 120px;"><u>PATIENT</u></b>
+  </br>
+<%= form_tag({:action => :create_patient}) do %>
+  <div class="form-group">
+    <%=text_field 'patient','name',:class=>"form-control",:placeholder=>"Name",:style=>"width: 300px;"%>
+  </div>
+  <div class="form-group">
+    <%=text_field 'patient','phone_number',:class=>"form-control",:placeholder=>"Phone Number",:style=>"width: 300px;"%>
+  </div>
+  <button type="submit" class="btn btn-warning" style="margin-left: 230px;" onclick="submit_patient()">Submit</button>
+<% end %>
+</br></br></br>
+</div>
+</td>
+
+<td style="width: 50%;">
+<div class="form-group" style="margin-left: 150px;">
+  </br></br>
+  <b style="color: steelblue; margin-left: 120px;"><u>DOCTOR</u></b>
+  <%= form_tag({:action => :create_doctor}) do %>
+      <div class="form-group">
+        <%=text_field 'doctor','name',:class=>"form-control",:placeholder=>"Name",:style=>"width: 300px;"%>
+      </div>
+      <div class="form-group">
+        <%=text_field 'doctor','phone_number',:class=>"form-control",:placeholder=>"Phone Number",:style=>"width: 300px;"%>
+      </div>
+      <div class="form-group">
+        <%=text_field 'doctor','specialization',:class=>"form-control",:placeholder=>"Specialization",:style=>"width: 300px;"%>
+      </div>
+      <button type="submit" id="submit_doctor" class="btn btn-warning" style="margin-left: 230px;">Submit</button>
+  <% end %>
+  </br></br>
+</div>
+</td>
+</tr>
+
+<tr style="line-height: 50px;">
+<td style="width: 50%;">
+  </br></br>
+<div class="form-group" style="margin-left: 150px;">
+  <b style="color: steelblue; margin-left: 102px;"><u>APPOINTMENT</u></b>
+  <%= form_tag({:action => :create_appointment}) do %>
+      <div class="form-group">
+        <%= select_tag 'appointment_doctor', options_from_collection_for_select(@doctors.sort{|a,b|a.name<=>b.name}, 'id', 'name'),{:prompt => 'Doctor Name',:class=>'form-control',:style=>"width: 300px;"} %>
+      </div>
+      <div class="form-group">
+        <%= select_tag 'appointment_patient', options_from_collection_for_select(@patients.sort{|a,b|a.name<=>b.name}, 'id', 'name'),{:prompt => 'Patient Name',:class=>'form-control',:style=>"width: 300px;"} %>
+      </div>
+      <div class="form-group">
+        <%=text_field 'appointment','diseases',:class=>"form-control",:placeholder=>"Diseases",:style=>"width: 300px;"%>
+      </div>
+      <button type="submit" id="submit_appointment" class="btn btn-warning" style="margin-left: 230px;">Submit</button>
+  <% end %>
+  </br></br></br></br>
+</div>
+</td>
+
+<td style="width: 50%; background-color: #F1F1F1"">
+<div class="form-group">
+<table class="table">
+  </br>
+  <caption style="color: steelblue"><b><u>VIEW APPOINTMENT</u></b></caption>
+  <thead>
+  <tr style="background-color: steelblue">
+    <th style="color: #ffffff">Patient Name</th>
+    <th style="color: #ffffff">Doctor Name</th>
+    <th style="color: #ffffff">Diseases</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @appointments.each do |appoint|%>
+  <tr>
+    <td style="color: skyblue"><%= appoint.try(:patient).try(:name) %></td>
+    <td><%= appoint.try(:doctor).try(:name) %></td>
+    <td><%= appoint.try(:diseases) %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+</td>
+</tr>
+</table>

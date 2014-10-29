@@ -1,0 +1,23 @@
+</br>
+<a href="#" class="btn btn-primary btn-lg" style="margin-left: 357px; padding-left: 50px;" role="button">
+  <span style="margin-right: 30px;">Facebook</span>
+</a>
+<a href="#" class="btn btn-danger btn-lg" style="margin-left: 236px; padding-left: 50px;"role="button">
+  <span style="margin-right: 30px;">Google+</span>
+</a>
+</br></br>
+<div class="span12" style="text-align:center; margin: 0 auto;"><font size="5">or</font></div>
+</br></br>
+<div class="span12" style="text-align:center; margin: 0 auto;">
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <% if devise_error_messages!.present? %>
+    <div class="alert alert-danger"><%= devise_error_messages! %></div>
+  <% end %>
+  <div><%= f.email_field :email, autofocus: true, class: "form-control", placeholder: 'email address',style: 'width: 45%; margin-left: 357px;' %></div>
+  <div><%= f.password_field :password, autocomplete: "off", class: "form-control", placeholder: 'password',style: 'width: 45%; margin-left: 357px; margin-top: 8px;' %></div>
+  <div><%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: 'password confirmation',style: 'width: 45%; margin-left: 357px; margin-top: 8px;' %></div>
+  </br>
+  <div><%= f.submit "Sign up",class: "btn btn-info btn-lg",style: 'width: 45%; margin-right: 1px;' %></div>
+<% end %>
+</div>
+
